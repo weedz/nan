@@ -2517,7 +2517,6 @@ NAN_DEPRECATED inline void SetAccessor(
   , GetterCallback getter
   , SetterCallback setter
   , v8::Local<v8::Value> data
-  , v8::AccessControl settings
   , v8::PropertyAttribute attribute
   , imp::Sig signature) {
   HandleScope scope;
@@ -2550,7 +2549,6 @@ NAN_DEPRECATED inline void SetAccessor(
     , getter_
     , setter_
     , obj
-    , settings
     , attribute
 #if (NODE_MODULE_VERSION < NODE_16_0_MODULE_VERSION)
     , signature
@@ -2564,7 +2562,6 @@ inline void SetAccessor(
   , GetterCallback getter
   , SetterCallback setter = 0
   , v8::Local<v8::Value> data = v8::Local<v8::Value>()
-  , v8::AccessControl settings = v8::DEFAULT
   , v8::PropertyAttribute attribute = v8::None) {
   HandleScope scope;
 
@@ -2596,7 +2593,6 @@ inline void SetAccessor(
     , getter_
     , setter_
     , obj
-    , settings
     , attribute
   );
 }
@@ -2607,9 +2603,9 @@ inline bool SetAccessor(
   , GetterCallback getter
   , SetterCallback setter = 0
   , v8::Local<v8::Value> data = v8::Local<v8::Value>()
-  , v8::AccessControl settings = v8::DEFAULT
   , v8::PropertyAttribute attribute = v8::None) {
   HandleScope scope;
+  v8::AccessControl settings = v8::DEFAULT;
 
   imp::NativeGetter getter_ =
       imp::GetterCallbackWrapper;
